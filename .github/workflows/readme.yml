@@ -1,0 +1,24 @@
+name: Build and test
+
+on:
+  push:
+
+jobs:
+
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - run: gem install cocoapods-generate
+      - name: Kotlin/Native unit tests
+        run: ./gradlew iosX64Test
