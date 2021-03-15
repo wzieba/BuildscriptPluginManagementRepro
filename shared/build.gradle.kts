@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
+    kotlin("multiplatform") version "1.4.31"
+    kotlin("native.cocoapods") version "1.4.31"
     id("com.squareup.sqldelight")
 }
 
